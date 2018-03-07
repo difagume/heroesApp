@@ -9,14 +9,24 @@ import { HeroesService } from '../../services/heroes.service';
 export class HeroesComponent implements OnInit {
 
   heroes: any[] = [];
+  loading = true;
 
   constructor(private _heroesService: HeroesService) {
 
     // Procedimiento para leer los héroes
     this._heroesService.getHeroes()
       .subscribe(data => {
-        console.log('getHeroes: ', data);
+
+        // Sin el timeout
         this.heroes = data;
+        this.loading = false;
+
+        // Con timeout
+        /* setTimeout(() => {
+          console.log('getHeroes: ', data);
+          this.heroes = data;
+          this.loading = false;
+        }, 1000); */
       });
   }
 
