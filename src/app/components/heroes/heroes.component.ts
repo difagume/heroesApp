@@ -22,4 +22,23 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  borraHeroe(key$: string) {
+    this._heroesService.borrarHeroe(key$)
+      .subscribe(respuesta => {
+        console.log('borrado:', respuesta);
+        // Cuando elimina correctamente retorna null
+        if (respuesta) {
+          console.error(respuesta);
+        } else {
+          /**
+           * Todo bien, entonces refresco el lsitado de heroes,
+           * se relaciona con el pipe y el parametro pure:false
+           * para que no de errores en el log
+           */
+          delete this.heroes[key$];
+        }
+      });
+  }
+
 }

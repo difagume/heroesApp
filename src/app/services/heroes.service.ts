@@ -52,4 +52,10 @@ export class HeroesService {
       .map(res => res.json());
   }
 
+  borrarHeroe(key$: string) {
+    const url = `${this.heroeUrl}/${key$}.json`;
+    return this.http.delete(url)
+      .map(res => res.json());
+  }
+
 }
