@@ -19,6 +19,8 @@ export class HeroesService {
 
     return this.http.post(this.heroesUrl, body, { headers })
       .map(res => {
+        console.log('body del post: ',body);
+        console.log('headers del post: ',headers);
         console.log(res.json());
         return res.json();
       });
